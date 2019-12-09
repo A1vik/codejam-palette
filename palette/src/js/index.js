@@ -1,3 +1,4 @@
 import '../scss/main.scss';
 
-(() => console.log('hi'))();
+const canvas = document.getElementById('canvas');
+console.log(canvas.ctxData);

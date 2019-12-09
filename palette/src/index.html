@@ -8,18 +8,18 @@
 </head>
 <body>
   <div class="wrapper">
-    <header>
+    <header class="main-header">
       <nav class="nav nav--main"></nav>
-      <h1>CodeJam - Palette</h1>
-      <nav class="nav nav--user"></nav>
+      <h1 class="nav__title">CodeJam - Palette</h1>
+      <nav class="nav nav--right"></nav>
     </header>
 
-    <main>
-      <div>
+    <main class="page-main">
+      <div class="main__wrapper">
         <section class="tools tools--drawing">
           <h2 class="visually-hidden">Drawing tools</h2>
           <ul>
-            <li class="tool">
+            <li class="tool tool--active">
               <svg width="20" height="18" viewBox="0 0 20 18">
                 <path d="M17.7782 11.25C17.7782 11.25 15.556 14.5072 15.556 15.75C15.556 16.9928 16.5511 18 17.7782 18C19.0053 18 20.0004 16.9928 20.0004 15.75C20.0004 14.5072 17.7782 11.25 17.7782 11.25ZM17.4528 7.63102L10.2414 0.329414C10.0244 0.109687 9.73999 0 9.45561 0C9.17124 0 8.88686 0.109687 8.67019 0.329414L5.83755 3.19746L2.84519 0.167344C2.62818 -0.0523828 2.27644 -0.0523828 2.05978 0.167344L1.27436 0.962578C1.05769 1.1823 1.05769 1.53844 1.27436 1.75781L4.26707 4.78758L0.97679 8.11898C-0.324946 9.43664 -0.324946 11.5734 0.97679 12.8914L5.04589 17.0114C5.69658 17.6702 6.54971 18 7.40248 18C8.25561 18 9.10839 17.6706 9.75908 17.0114L17.4525 9.22184C17.8865 8.78238 17.8865 8.07047 17.4528 7.63102ZM13.4174 10.1261H2.28964C2.33686 9.99105 2.4136 9.84551 2.54762 9.71016L3.00422 9.24785L5.8379 6.37875L7.87262 8.43891C8.3063 8.87801 9.00978 8.87801 9.44346 8.43891C9.87714 7.9998 9.87714 7.28754 9.44346 6.84844L7.40874 4.78828L9.45561 2.71582L15.0959 8.4266L13.4174 10.1261Z" fill="black" fill-opacity="0.5413"/>
               </svg>
@@ -54,24 +54,24 @@
           <hr>
           <ul>
             <li class="color color--red">
-              <div class="color__icon"></div>
+              <div class="color__btn"></div>
               <span>Red</span>
             </li>
             <li class="color color--blue">
-              <div class="color__icon"></div>
+              <div class="color__btn"></div>
               <span>Blue</span>
             </li>
           </ul>
         </section>
-        <section class="canvas">
-          <h2 class="visually-hidden">Canvas</h2>
-          <canvas id="canvas" class="canvas__style" width="512" height="512"></canvas>
-          <div class="canvas__buttons">
-              <button class="canvas__clear" type="button">Clear</button>
-              <button class="canvas__save" type="button">Save</button>
-          </div>
-      </section>
       </div>
+      <section class="canvas">
+        <h2 class="visually-hidden">Canvas</h2>
+        <canvas id="canvas" class="canvas__style" width="512" height="512"></canvas>
+        <div class="canvas__buttons">
+          <button class="canvas__btn canvas--clear" type="button">Clear</button>
+          <button class="canvas__btn canvas--save" type="button">Save</button>
+        </div>
+      </section>
     </main>
   </div>
 </body>

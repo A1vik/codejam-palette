@@ -27,10 +27,10 @@ module.exports = {
       {
         test: /\.(svg|png|jpg|gif)$/,
         use: {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "[name].[ext]",
-            outputPath: "imgs"
+            name: '[name].[ext]',
+            outputPath: './images',
           }
         }
       }

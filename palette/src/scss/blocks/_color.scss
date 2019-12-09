@@ -1,0 +1,48 @@
+.color {
+  & input[type="color"] {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    margin-right: 18px;
+    padding: 0;
+    border: none;
+    border: 1px solid black;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+  }
+
+  & input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0; }
+  & input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%; }
+
+  &__btn {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    margin-right: 18px;
+    padding: 0;
+
+    outline: none;
+    background-color: $main-bg-color;
+    border: 1px solid black;
+    border-radius: 50%;
+    
+    cursor: pointer;
+  }
+}
+
+.color--red,
+.color--blue {
+  display: flex;
+}
+
+.color--red div {
+  background-color: red;
+}
+
+.color--blue div {
+  background-color: blue;
+}
