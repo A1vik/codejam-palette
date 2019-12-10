@@ -1,0 +1,33 @@
+.main-header {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+}
+
+.nav {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+
+  &--main {
+    margin-right: 30px;
+    width: 18px;
+    height: 12px;
+    background-image: url('../images/iconHamburger.svg');
+  }
+
+  &__title {
+    flex-grow: 1;
+
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  &--right {
+    width: 4px;
+    height: 16px;
+    background-image: url('../images/iconDots.svg');
+  }
+}

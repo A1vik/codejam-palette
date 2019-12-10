@@ -1,0 +1,14 @@
+.canvas {
+
+  &__style {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  &__btn {
+    font-size: $main-font-size;
+    color: $main-color;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
+}
