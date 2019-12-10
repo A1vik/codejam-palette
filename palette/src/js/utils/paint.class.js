@@ -1,10 +1,12 @@
 import { getMouseCoordsOnCanvas } from './utils';
 import Fill from './fill.class';
+import Color from './color.class';
 
 export default class Paint {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext('2d');
+    this.imageData = this.canvas.toDataURL();
     this.SCALE = 128;
   }
 
@@ -18,12 +20,16 @@ export default class Paint {
     this.ctx.strokeStyle = this.color;
   }
 
+  get getCurrColor() {
+    return this.color;
+  }
+
   init() {
     this.canvas.onmousedown = e => this.onMouseDown(e);
   }
 
   onMouseDown(e) {
-    this.savedData = this.ctx.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+    this.savedData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 
     this.canvas.onmousemove = e => this.onMouseMove(e);
     document.onmouseup = e => this.onMouseUp(e);
@@ -31,10 +37,13 @@ export default class Paint {
     this.startPos = getMouseCoordsOnCanvas(e, this.canvas);
 
     if (this.tool === 'pencil') {
-      // this.ctx.beginPath();
-      // this.ctx.moveTo(this.startPos.x, this.startPos.y);
+      // 
     } else if (this.tool === 'fill') {
       new Fill(this.canvas, this.startPos, this.color);
+    } else if (this.tool === 'color') {
+      const color = new Color(this.canvas, this.startPos, this.color);
+      this.color = color.getColor();
+      console.log(this.color);
     }
   }
 
@@ -52,14 +61,15 @@ export default class Paint {
   }
 
   onMouseUp() {
+    this.imageData = this.canvas.toDataURL();
+    localStorage.setItem('canvas', this.imageData);
     this.canvas.onmousemove = null;
     document.onmouseup = null;
   }
 
+
+
   draw(e) {
-    // this.ctx.lineWidth = 12;
-    // this.ctx.lineTo(this.currentPos.x, this.currentPos.y);
-    // this.ctx.stroke();
     this.ctx.fillStyle = this.color;
     this.ctx.fillRect(getPosition(e.offsetX), getPosition(e.offsetY), this.SCALE, this.SCALE);
   }

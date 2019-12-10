@@ -6,3 +6,4 @@ export function getMouseCoordsOnCanvas(e, canvas) {
   const y = Math.round(e.clientY - rect.top);
   return new Point(x, y);
 }
+

@@ -1,15 +1,7 @@
 import '../scss/main.scss';
 
 import Paint from './utils/paint.class';
-// import { changeTool } from './utils/changeTool';
-// import { Tools } from './utils/Tools';
 
-// const canvas = document.getElementById('canvas');
-// console.log(canvas.ctxData);
-
-// changeTool();
-
-// const tool = new Tools(document.querySelector('.tools'));
 let currentColor = document.getElementById('current-color').value;
 const prevColor = document.getElementById('prev-color');
 
@@ -17,6 +9,17 @@ const paint = new Paint('canvas');
 paint.activeTool = 'pencil';
 paint.selectedColor = currentColor;
 paint.init();
+
+if (localStorage.getItem('canvas') !== null || localStorage.getItem('canvas') !== undefined) {
+  const dataURL = localStorage.getItem('canvas');
+  const img = new Image();
+  img.src = dataURL;
+  img.onload = function () {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+  };
+}
 
 document.querySelectorAll('[data-tool]').forEach(
   item => {
@@ -26,17 +29,6 @@ document.querySelectorAll('[data-tool]').forEach(
 
       let selectedTool = item.getAttribute('data-tool');
       paint.activeTool = selectedTool;
-
-      switch (selectedTool) {
-        case 'pencil':
-          break;
-      
-        case 'fill':
-          break;
-
-        case 'color':
-          break;
-      }
     });
 });
 
@@ -57,6 +49,7 @@ currColor.addEventListener('change', () => {
   prevColor.value = currentColor;
   currentColor = currColor.value;
   paint.selectedColor = currentColor;
+  console.log(document.getElementById('current-color').value);
 });
 
 document.getElementById('prev-color').addEventListener('click', () => {
@@ -64,4 +57,34 @@ document.getElementById('prev-color').addEventListener('click', () => {
   currentColor = prevColor.value;
   paint.selectedColor = currentColor;
   document.getElementById('current-color').value = currentColor;
+});
+
+document.querySelector('.canvas--clear').addEventListener('click', () => {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+document.addEventListener('keydown', e => {
+  let target;
+  switch (e.code) {
+    case 'KeyB':
+      paint.activeTool = 'fill';
+      target = 'fill';
+      break;
+    case 'KeyP':
+      paint.activeTool = 'pencil';
+      target = 'pencil';
+      break;
+    case 'KeyC':
+      paint.activeTool = 'color';
+      target = 'color';
+      break;
+    default:
+      paint.activeTool = 'pencil';
+      target = 'pencil';
+  }
+  const targetTool = document.querySelector(`[data-tool=${target}]`);
+  document.querySelector('.tool--active').classList.toggle('tool--active');
+  targetTool.classList.toggle('tool--active');
 });
